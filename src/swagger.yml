@@ -1,0 +1,474 @@
+openapi: 3.0.2
+x-samples-languages:
+  - node
+  - javascript
+info:
+  title: Note keeper API
+  version: 1.0.0
+  description: >-
+    Note keeper API
+servers:
+  - url: 'https://note-keeper.app'
+    description: >-
+      Development Server - used by developers and test team
+paths:
+  /v1/ping/health:
+    get:
+      tags:
+        - System
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  test:
+                    type: string
+                    example: "ok"
+          description: API is OK
+      operationId: checkHealth
+      summary: Check API Availability
+      description: Test API health (availability)
+  /v1/swagger:
+    get:
+      tags:
+        - System
+      responses:
+        '200':
+          content:
+            application/x-yaml:
+              schema:
+                type: string
+                nullable: true
+                example: null
+          description: Actual Swagger API documentation
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+          description: An error has occurred
+      operationId: getSwagger
+      summary: Get Swagger Documentation
+      description: Fetch actual Swagger API documentation
+  /auth/register:
+    post:
+      security: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  description: User email
+                  type: string
+                password:
+                  description: User password
+                  type: string
+        required: true
+      tags:
+        - Authorization
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: Returns register User model if user successfully registered.
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Data Validation Failed
+      operationId: registerUser
+      summary: Register user
+      description: Register user
+  /auth/login:
+    post:
+      security: []
+      requestBody:
+        description: Generate Token by email and password
+        content:
+          application/json:
+            schema:
+              description: User login
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  description: Email
+                  type: string
+                password:
+                  description: Password
+                  type: string
+        required: true
+      tags:
+        - Authorization
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                description: User login success
+                type: object
+                properties:
+                  token:
+                    description: Bearer token
+                    type: string
+                  user:
+                    $ref: '#/components/schemas/User'
+          description: Returns access token and user id if successfully authenticated
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+          description: UnauthorizedError if user not found or wrong email / password
+      operationId: loginUser
+      summary: User Login
+      description: API resource returns JWT access token and User id for user by email and password
+  /v1/notes:
+    get:
+      tags:
+        - Notes
+      parameters:
+        - in: header
+          name: Authorization
+          required: true
+          schema:
+            type: string
+          description: Bearer token
+        - in: query
+          name: page
+          schema:
+            type: integer
+          description: Page number
+        - in: query
+          name: per-page
+          schema:
+            type: integer
+          description: Count results on page
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: Notes list response
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Note"
+                  _meta:
+                    $ref: '#/components/schemas/Pagination'
+          description: Returns list of notes
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedError"
+          description: No authorization token was found or invalid token
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+          description: An error has occurred
+      operationId: getNotes
+      summary: Get List of Notes
+      description: Common API resource to fetch a list of notes
+    post:
+      tags:
+        - Notes
+      parameters:
+        - in: header
+          name: Authorization
+          required: true
+          schema:
+            type: string
+          description: Bearer token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  description: Note text
+                  example: "Some text in text message field"
+              required:
+                - message
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Note"
+          description: Return Note model
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedError"
+          description: No authorization token was found or invalid token
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationError"
+          description: Data validation failed
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+          description: An error has occurred
+      operationId: createNote
+      summary: Create note
+      description: API resource create new Note and returns new Note Model
+  /v1/notes/{note_id}:
+    put:
+      tags:
+        - Notes
+      parameters:
+        - in: header
+          name: Authorization
+          required: true
+          schema:
+            type: string
+          description: Bearer token
+        - in: path
+          name: note_id
+          required: true
+          schema:
+            type: string
+            example: "5e6c09a3ec05c2bfc4c0f489"
+            description: Note ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  description: New Note text
+                  example: message
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Note"
+          description: Return Note model
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedError"
+          description: No authorization token was found or invalid token
+        '404':
+          content:
+            application/json:
+              schema:
+                description: Not found
+                type: object
+                properties:
+                  name:
+                    description: Error name
+                    type: string
+                    example: "Not found"
+                  message:
+                    description: Error message
+                    type: string
+                    example: "Note not found"
+          description: Note not found
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationError"
+          description: Data validation failed
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+          description: An error has occurred
+      operationId: updateNote
+      summary: Update note
+      description: API resource update Note and returns Note Model
+    delete:
+      tags:
+        - Notes
+      parameters:
+        - in: header
+          name: Authorization
+          required: true
+          schema:
+            type: string
+          description: Bearer token
+        - in: path
+          name: note_id
+          required: true
+          schema:
+            type: string
+            example: "5e6c09a3ec05c2bfc4c0f489"
+            description: Note ID
+      responses:
+        '204':
+          description: Removing success code
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedError"
+          description: No authorization token was found or invalid token
+        '404':
+          content:
+            application/json:
+              schema:
+                description: Not found
+                type: object
+                properties:
+                  name:
+                    description: Error name
+                    type: string
+                    example: "Not found"
+                  message:
+                    description: Error message
+                    type: string
+                    example: "Note not found"
+          description: Note not found
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationError"
+          description: Data validation failed
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+          description: An error has occurred
+      operationId: deleteNote
+      summary: Delete note
+      description: API resource delete Note
+components:
+  schemas:
+    Note:
+      description: Note
+      type: object
+      properties:
+        _id:
+          description: Note ID
+          type: string
+          example: "5e6c09a3ec05c2bfc4c0f489"
+        message:
+          description: Message
+          type: string
+          example: "Text message, string."
+        created_by:
+          description: User ID
+          type: string
+          example: "5e6bee74cc15c05974dfb043"
+        owner:
+          description: Owner ID
+          type: string
+          example: "5e6bee74cc15c05974dfb043"
+        created_at:
+          format: date-time
+          description: Creation time
+          type: string
+          example: "2020-03-13T22:30:59.004Z"
+        updated_at:
+          format: date-time
+          description: Updating time
+          type: string
+          example: "2020-03-13T22:30:59.004Z"
+    Pagination:
+      description: Paging
+      type: object
+      properties:
+        total_count:
+          description: total items
+          type: integer
+          example: 234
+        page_count:
+          description: total pages
+          type: integer
+          example: 24
+        current_page:
+          description: current page index
+          type: integer
+          example: 5
+        per_page:
+          description: items per page
+          type: integer
+          example: 10
+    ValidationError:
+      description: Validation error
+      type: object
+      properties:
+        name:
+          description: Error name
+          type: string
+          example: "Data validation error"
+        message:
+          description: Error message
+          type: string
+          example: "Invalid type param"
+    UnauthorizedError:
+      description: Unauthorized error
+      type: object
+      properties:
+        name:
+          description: Error name
+          type: string
+          example: "Unauthorized"
+        message:
+          description: Error message
+          type: string
+          example: "UnauthorizedError: No authorization token was found"
+    Error500:
+      description: Represents a single error detected by the API
+      type: object
+      properties:
+        name:
+          description: Error name
+          type: string
+        message:
+          description: Error message
+          type: string
+    User:
+      description: User model
+      type: object
+      properties:
+        email:
+          description: User email
+          type: string
+          example: "mailbox@amazzzon.com"
+        password:
+          description: User password
+          type: string
+          example: "StrongPassword"
+        notes:
+          type: array
+          description: User note ids array
+          items:
+            type: string
+            description: User note id
+
+
