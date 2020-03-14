@@ -8,7 +8,10 @@
     "start:dev": "NODE_ENV=development node src/server.js",
     "start:local": "NODE_ENV=local node src/server.js",
     "format": "./node_modules/.bin/prettier --write --single-quote \"src/**/*.js\"",
-    "format:dry": "./node_modules/.bin/prettier -l --single-quote \"src/**/*.js\""
+    "format:dry": "./node_modules/.bin/prettier -l --single-quote \"src/**/*.js\"",
+    "client": "npm run start --prefix client",
+    "client:install": "npm install --prefix client",
+    "client:build": "npm run build --prefix client"
   },
   "repository": {
     "type": "git",
