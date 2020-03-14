@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {userActions} from '../actions';
 import {history} from '../helpers';
 import {withRouter} from 'react-router-dom';
-import {Paper, Grid, Button, TextField, Typography} from '@material-ui/core';
+import {Paper, Grid, Button, TextField, Typography, Link} from '@material-ui/core';
 
 const styles = theme => ({
     typography: {
@@ -107,6 +107,10 @@ class Login extends Component {
                                         onClick={(event) => {
                                             this.login()
                                         }}>Login</Button>
+                                <br/><br/>
+                                <Link href="/auth/register">
+                                    Don't have an account? Create one now.
+                                </Link>
                             </div>
                         </Paper>
                     </Grid>
