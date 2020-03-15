@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import AppBar from '../components/appbar';
-import Nav from '../components/nav';
+import AppBar from '../components/Appbar';
+import Nav from '../components/Nav';
 import {Typography} from '@material-ui/core';
 
 const drawerWidth = 240;

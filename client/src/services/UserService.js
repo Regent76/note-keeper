@@ -1,5 +1,5 @@
 import axios from 'axios';
-import config from '../config/config';
+import config from '../config/Config';
 
 export const userService = {
     get,
@@ -24,8 +24,6 @@ function get(apiEndpoint) {
 function post(apiEndpoint, payload) {
     return axios.post(config.baseUrl + apiEndpoint, payload).then((response) => {
         return response;
-    }).catch((err) => {
-        console.log(err);
     })
 }
 

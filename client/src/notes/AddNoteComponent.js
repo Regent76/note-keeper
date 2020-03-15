@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import AppBar from '../components/appbar';
+import AppBar from '../components/Appbar';
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
-import Nav from '../components/nav';
+import Nav from '../components/Nav';
 import {connect} from 'react-redux';
 import {noteAction} from '../actions';
 import {withRouter} from 'react-router-dom';

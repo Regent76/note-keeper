@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import './App.css';
 import {Router, Switch, Route} from 'react-router-dom';
-import {AddNote} from './notes/addnote.component'
-import {Note} from './notes/note.component';
+import {AddNote} from './notes/AddNoteComponent'
+import {Note} from './notes/NoteComponent';
 import {Login} from './login/';
-import {Register} from './login/register.component';
+import {Register} from './login/RegisterComponent';
 import {Home} from './home/';
 import {history} from './helpers';
 import {PrivateRoute} from './components/PrivateRoute';

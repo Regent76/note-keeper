@@ -4,7 +4,7 @@ import {history} from '../helpers';
 export const userActions = {
     register,
     login,
-    logout
+    logout,
 };
 
 function login(email, password) {
@@ -28,24 +28,23 @@ function login(email, password) {
 
 function register(email, password) {
     return dispatch => {
-        let apiEndpoint = 'auth/register';
-        let payload = {
-            email: email,
-            password: password
-        };
-        userService.post(apiEndpoint, payload)
-            .then((response) => {
-                if (response && response.data.message === 'User created.') {
-                    dispatch(setUserDetails(response.data));
-                    history.push('/');
-                } else {
-                    throw new Error("Check login and password.");
-                }
-                console.log(response);
-            }).catch((error) => {
-            console.log(error.config);
+        return new Promise((resolve, reject) => {
+            let apiEndpoint = 'auth/register';
+            let payload = {
+                email: email,
+                password: password
+            };
+            userService.post(apiEndpoint, payload)
+                .then((response) => {
+                    if (response && response.data.message === 'User created.') {
+                        dispatch(setUserDetails(response.data));
+                        history.push('/');
+                    }
+                }).catch(err => {
+                dispatch(setRegisterError(err.response));
+            });
         });
-    };
+    }
 }
 
 function logout() {
@@ -57,6 +56,12 @@ function logout() {
     }
 }
 
+export function setRegisterError(error) {
+    return {
+        type: "REGISTER_ERROR",
+        errorMessage: error.data.message || 'Something goes wrong.',
+    }
+}
 export function setUserDetails(user) {
     return {
         type: "LOGIN_SUCCESS",

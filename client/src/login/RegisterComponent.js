@@ -64,16 +64,19 @@ class Register extends Component {
         this.setState({[prop]: event.target.value});
     };
     register = event => {
-        this.setState({submitted: true});
         const {email, password} = this.state;
         const {dispatch} = this.props;
         if (email && password) {
             dispatch(userActions.register(email, password));
         }
+        this.setState(Object.assign({}, this.state, {
+            submitted: true,
+            errorMessage: this.props.errorMessage
+        }));
     };
 
     render() {
-        const {classes} = this.props;
+        const {classes, errorMessage} = this.props;
         return (
             <div className="login-margin">
                 <Grid container spacing={6}>
@@ -100,8 +103,8 @@ class Register extends Component {
                                     value={this.state.password}
                                     onChange={this.handleChange('password')}
                                 />
-                                {this.state.errorMessage &&
-                                <h3 className="error"> {this.state.errorMessage} </h3>}
+                                {errorMessage &&
+                                <h3 className="error"> {errorMessage} </h3>}
                                 <br/><br/>
                                 <Button variant="contained" color="primary" className={classes.button}
                                         onClick={(event) => {
@@ -123,9 +126,10 @@ Register.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-    const {registerDone} = state.authentication;
+    const {registerDone, errorMessage} = state.authentication;
     return {
-        registerDone
+        registerDone,
+        errorMessage
     };
 };
 const connectedRegisterPage = withRouter(connect(mapStateToProps, null, null, {

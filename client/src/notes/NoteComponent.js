@@ -1,10 +1,10 @@
 import {connect} from 'react-redux';
 import {noteAction} from '../actions';
 import React, {Component} from 'react';
-import AppBar from '../components/appbar';
+import AppBar from '../components/Appbar';
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
-import Nav from '../components/nav';
+import Nav from '../components/Nav';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import {withRouter} from 'react-router-dom';
@@ -126,12 +126,16 @@ class Note extends Component {
                                     </TableHead>
                                     <TableBody>
                                         {note.map(n => {
+                                            let createdAt = new Date(n.created_at);
+                                            createdAt = createdAt.toLocaleString();
+                                            let updatedAt = new Date(n.updated_at);
+                                            updatedAt = updatedAt.toLocaleString();
                                             return (
                                                 <TableRow key={n._id}>
                                                     <TableCell>{n.owner}</TableCell>
                                                     <TableCell component="th" scope="row"> {n.message} </TableCell>
-                                                    <TableCell>{n.created_at}</TableCell>
-                                                    <TableCell>{n.updated_at}</TableCell>
+                                                    <TableCell>{createdAt}</TableCell>
+                                                    <TableCell>{updatedAt}</TableCell>
                                                     <TableCell component="th" scope="row"> {n.created_by} </TableCell>
                                                     <TableCell>
                                                         <IconButton className={classes.button} aria-label="Edit"
