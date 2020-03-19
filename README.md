@@ -3,6 +3,7 @@
 Server API for Note keeper web application
 Working with notes (Node.js, ExpressJS, MongoDB)
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/44d82974b18c4ced8bd55dd2658b8f1f)](https://www.codacy.com/manual/Regent76/note-keeper?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Regent76/note-keeper&amp;utm_campaign=Badge_Grade)
 ## Getting Started
 
 This is the BACKEND application written in Node.js ecosystem.

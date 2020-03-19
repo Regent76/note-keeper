@@ -21,4 +21,5 @@ You will also see any lint errors in the console.
 ```
 
 
-Launches the test runner in the interactive watch mode.<br />
+Launches the test runner in the interactive watch mode.<br /><br />
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/44d82974b18c4ced8bd55dd2658b8f1f)](https://www.codacy.com/manual/Regent76/note-keeper?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Regent76/note-keeper&amp;utm_campaign=Badge_Grade)
