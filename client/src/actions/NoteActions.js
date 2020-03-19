@@ -53,7 +53,7 @@ function getNote() {
             .then((response) => {
                 dispatch(changeNotesList(response.data.items));
             }).catch((err) => {
-        })
+        });
     };
 }
 
@@ -64,7 +64,7 @@ function createNote(payload) {
             .then((response) => {
                 dispatch(createUserInfo());
                 history.push("/notes");
-            })
+            });
     };
 }
 
@@ -95,15 +95,6 @@ function editNoteInfo(id, payload) {
     };
 }
 
-export const noteAction = {
-    getNote,
-    getNoteById,
-    onChangeProps,
-    editNoteInfo,
-    createNote,
-    deleteNoteById
-};
-
 function deleteNoteById(id) {
     return (dispatch) => {
         let apiEndpoint = "notes/" + id;
@@ -114,3 +105,12 @@ function deleteNoteById(id) {
             });
     };
 }
+
+export const noteAction = {
+    getNote,
+    getNoteById,
+    onChangeProps,
+    editNoteInfo,
+    createNote,
+    deleteNoteById
+};
