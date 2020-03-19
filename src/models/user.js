@@ -19,8 +19,8 @@ let userSchema = new Schema(
 );
 
 userSchema.plugin(timestamps, {
-  createdAt: "created_at",
-  updatedAt: "updated_at"
+  createdAt: "createdAt",
+  updatedAt: "updatedAt"
 });
 userSchema.plugin(paginate);
 

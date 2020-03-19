@@ -79,7 +79,7 @@ class Note extends Component {
     };
     handleClick = (event, id) => {
         const {dispatch} = this.props;
-        dispatch(noteAction.deleteNoteById(id))
+        dispatch(noteAction.deleteNoteById(id));
     };
 
     render() {
@@ -126,9 +126,9 @@ class Note extends Component {
                                     </TableHead>
                                     <TableBody>
                                         {note.map((n) => {
-                                            let createdAt = new Date(n.created_at);
+                                            let createdAt = new Date(n.createdAt);
                                             createdAt = createdAt.toLocaleString();
-                                            let updatedAt = new Date(n.updated_at);
+                                            let updatedAt = new Date(n.updatedAt);
                                             updatedAt = updatedAt.toLocaleString();
                                             return (
                                                 <TableRow key={n._id}>
@@ -136,7 +136,7 @@ class Note extends Component {
                                                     <TableCell component="th" scope="row"> {n.message} </TableCell>
                                                     <TableCell>{createdAt}</TableCell>
                                                     <TableCell>{updatedAt}</TableCell>
-                                                    <TableCell component="th" scope="row"> {n.created_by} </TableCell>
+                                                    <TableCell component="th" scope="row"> {n.createdBy} </TableCell>
                                                     <TableCell>
                                                         <IconButton className={classes.button} aria-label="Edit"
                                                                     component="a" href={`/notes/${n._id}`}>

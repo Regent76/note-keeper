@@ -74,7 +74,7 @@ async function updateNote(req, res) {
         created_by: req.user.userId,
         owner: req.user.userId
       },
-      { message: message },
+      { message },
       {
         new: true,
         useFindAndModify: false

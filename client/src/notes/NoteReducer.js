@@ -4,10 +4,10 @@ const initialState = {
     open: false,
     id: "",
     message: "",
-    created_by: "",
+    createdBy: "",
     owner: "",
-    created_at: "",
-    updated_at: ""
+    createdAt: "",
+    updatedAt: ""
 };
 
 export function note(state = initialState, action) {
@@ -22,10 +22,10 @@ export function note(state = initialState, action) {
                 ...state,
                 id: action.id,
                 message: action.message,
-                created_by: action.created_by,
+                createdBy: action.createdBy,
                 owner: action.owner,
-                created_at: action.created_at,
-                updated_at: action.updated_at
+                createdAt: action.createdAt,
+                updatedAt: action.updatedAt
             };
         case "USER_UPDATED":
             return state;

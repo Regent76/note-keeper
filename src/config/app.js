@@ -26,10 +26,10 @@ let mongoUri;
       useUnifiedTopology: true,
       useCreateIndex: true
     })
-    .catch(error => {
+    .catch((error)=> {
       process.exit(1);
     });
-})().catch(err => (process.exit(1)));
+})().catch((err) => (process.exit(1)));
 
 app.use(
   jwt({ secret: config.jwtKey }).unless({
@@ -70,7 +70,7 @@ app.use((req, res) => {
   response.code404(res, "url: " + req.originalUrl + " not found");
 });
 
-app.listen(config.port, err => {
+app.listen(config.port, (err) => {
   if (err) {
     return "Error occurred";
   }

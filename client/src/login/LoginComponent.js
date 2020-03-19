@@ -51,7 +51,7 @@ class Login extends Component {
             password: "",
             showPassword: false,
             errorMessage: ""
-        }
+        };
     }
 
     componentDidMount() {
@@ -105,7 +105,7 @@ class Login extends Component {
                                 <br/><br/>
                                 <Button variant="contained" color="primary" className={classes.button}
                                         onClick={(event) => {
-                                            this.login()
+                                            this.login();
                                         }}>Login</Button>
                                 <br/><br/>
                                 <Link href="/auth/register">

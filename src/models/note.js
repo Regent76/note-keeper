@@ -20,8 +20,8 @@ let noteSchema = new Schema(
 
 noteSchema.plugin(paginate);
 noteSchema.plugin(timestamps, {
-  createdAt: "created_at",
-  updatedAt: "updated_at"
+  createdAt: "createdAt",
+  updatedAt: "updatedAt"
 });
 
 export default model("Note", noteSchema);

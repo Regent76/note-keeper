@@ -11,8 +11,8 @@ function login(email, password) {
     return (dispatch) => {
         let apiEndpoint = "auth/login";
         let payload = {
-            email: email,
-            password: password
+            email,
+            password
         };
         userService.post(apiEndpoint, payload)
             .then((response) => {
@@ -22,7 +22,7 @@ function login(email, password) {
                     dispatch(setUserDetails(response.data));
                     history.push("/home");
                 }
-            })
+            });
     };
 }
 
@@ -31,8 +31,8 @@ function register(email, password) {
         return new Promise((resolve, reject) => {
             let apiEndpoint = "auth/register";
             let payload = {
-                email: email,
-                password: password
+                email,
+                password
             };
             userService.post(apiEndpoint, payload)
                 .then((response) => {
@@ -40,11 +40,11 @@ function register(email, password) {
                         dispatch(setUserDetails(response.data));
                         history.push("/");
                     }
-                }).catch(err => {
+                }).catch((err) => {
                 dispatch(setRegisterError(err.response));
             });
         });
-    }
+    };
 }
 
 function logout() {
@@ -53,21 +53,21 @@ function logout() {
         localStorage.removeItem("token");
         dispatch(logoutUser());
         history.push("/");
-    }
+    };
 }
 
 export function setRegisterError(error) {
     return {
         type: "REGISTER_ERROR",
         errorMessage: error.data.message || "Something goes wrong.",
-    }
+    };
 }
 export function setUserDetails(user) {
     return {
         type: "LOGIN_SUCCESS",
         auth: user.auth,
         token: user.token
-    }
+    };
 }
 
 export function logoutUser() {
@@ -75,5 +75,5 @@ export function logoutUser() {
         type: "LOGOUT_SUCCESS",
         auth: false,
         token: ""
-    }
+    };
 }

@@ -51,7 +51,7 @@ class Register extends Component {
             password: "",
             showPassword: false,
             errorMessage: ""
-        }
+        };
     }
 
     componentDidMount() {
@@ -108,7 +108,7 @@ class Register extends Component {
                                 <br/><br/>
                                 <Button variant="contained" color="primary" className={classes.button}
                                         onClick={(event) => {
-                                            this.register()
+                                            this.register();
                                         }}>Register</Button>
                             </div>
                         </Paper>

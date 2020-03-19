@@ -23,7 +23,7 @@ describe("Note Controller Test", async function() {
       .request(apiTestConfig.consts.API_URL)
       .put("/v1/notes/" + apiTestConfig.consts.NOTE_ID)
       .send({
-        message: message
+        message
       })
       .set("Authorization", "Bearer " + apiTestConfig.consts.JWT1)
       .end(function(err, res) {

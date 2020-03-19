@@ -388,12 +388,12 @@ components:
           description: Owner ID
           type: string
           example: "5e6bee74cc15c05974dfb043"
-        created_at:
+        createdAt:
           format: date-time
           description: Creation time
           type: string
           example: "2020-03-13T22:30:59.004Z"
-        updated_at:
+        updatedAt:
           format: date-time
           description: Updating time
           type: string

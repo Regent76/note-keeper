@@ -29,7 +29,7 @@ async function registerUser(req, res) {
     const user = new User({
       email,
       password: hashedPassword,
-      created_at: new Date()
+      createdAt: new Date()
     });
 
     await user.save();

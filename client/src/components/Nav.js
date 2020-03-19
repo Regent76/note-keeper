@@ -84,7 +84,7 @@ class Navigation extends React.Component {
                         <ListItemText primary="Notes"/>
                     </ListItem>
                     <ListItem button onClick={(event) => {
-                        this.logout()
+                        this.logout();
                     }}>
                         <ListItemIcon>
                             <LogoutIcon/>

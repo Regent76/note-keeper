@@ -12,7 +12,7 @@ export default {
       }
     };
   },
-  paginateParam: req => {
+  paginateParam: (req) => {
     let page;
     let perPage = config.params.perPage;
     let queryPage = parseInt(req.query.page);
@@ -33,7 +33,7 @@ export default {
     }
 
     return {
-      page: page,
+      page,
       limit: perPage
     };
   }

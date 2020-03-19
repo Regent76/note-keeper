@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import "./App.css";
 import {Router, Switch, Route} from "react-router-dom";
-import {AddNote} from "./notes/AddNoteComponent"
+import {AddNote} from "./notes/AddNoteComponent";
 import {Note} from "./notes/NoteComponent";
 import {Login} from "./login/";
 import {Register} from "./login/RegisterComponent";
