@@ -380,7 +380,7 @@ components:
           description: Message
           type: string
           example: "Text message, string."
-        created_by:
+        createdBy:
           description: User ID
           type: string
           example: "5e6bee74cc15c05974dfb043"

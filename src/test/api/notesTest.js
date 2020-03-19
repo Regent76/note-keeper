@@ -11,7 +11,7 @@ describe("Note Controller Test", async function() {
     await Note.deleteMany();
     const note = new Note({
       _id: apiTestConfig.consts.NOTE_ID,
-      created_by: apiTestConfig.consts.PROFILE_ID1,
+      createdBy: apiTestConfig.consts.PROFILE_ID1,
       owner: apiTestConfig.consts.PROFILE_ID1
     });
     return await note.save();

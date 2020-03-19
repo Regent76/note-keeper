@@ -74,7 +74,7 @@ function getNoteById(id) {
         userService.get(apiEndpoint)
             .then((response) => {
                 dispatch(editVNotesDetails(response.data.note));
-            })
+            });
     };
 }
 
@@ -95,6 +95,15 @@ function editNoteInfo(id, payload) {
     };
 }
 
+export const noteAction = {
+    getNote,
+    getNoteById,
+    onChangeProps,
+    editNoteInfo,
+    createNote,
+    deleteNoteById
+};
+
 function deleteNoteById(id) {
     return (dispatch) => {
         let apiEndpoint = "notes/" + id;
@@ -105,13 +114,3 @@ function deleteNoteById(id) {
             });
     };
 }
-
-export const noteAction = {
-    getNote,
-    getNoteById,
-    onChangeProps,
-    editNoteInfo,
-    createNote,
-    deleteNoteById
-};
-

@@ -1,11 +1,28 @@
 import {userService} from "../services/";
 import {history} from "../helpers";
 
-export const userActions = {
-    register,
-    login,
-    logout,
-};
+export function setRegisterError(error) {
+    return {
+        type: "REGISTER_ERROR",
+        errorMessage: error.data.message || "Something goes wrong.",
+    };
+}
+
+export function setUserDetails(user) {
+    return {
+        type: "LOGIN_SUCCESS",
+        auth: user.auth,
+        token: user.token
+    };
+}
+
+export function logoutUser() {
+    return {
+        type: "LOGOUT_SUCCESS",
+        auth: false,
+        token: ""
+    };
+}
 
 function login(email, password) {
     return (dispatch) => {
@@ -56,24 +73,8 @@ function logout() {
     };
 }
 
-export function setRegisterError(error) {
-    return {
-        type: "REGISTER_ERROR",
-        errorMessage: error.data.message || "Something goes wrong.",
-    };
-}
-export function setUserDetails(user) {
-    return {
-        type: "LOGIN_SUCCESS",
-        auth: user.auth,
-        token: user.token
-    };
-}
-
-export function logoutUser() {
-    return {
-        type: "LOGOUT_SUCCESS",
-        auth: false,
-        token: ""
-    };
-}
+export const userActions = {
+    register,
+    login,
+    logout,
+};

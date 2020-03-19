@@ -40,7 +40,7 @@ async function createNote(req, res) {
 
   const note = new Note({
     message,
-    created_by: req.user.userId,
+    createdBy: req.user.userId,
     owner: req.user.userId
   });
 
@@ -71,7 +71,7 @@ async function updateNote(req, res) {
     note = await Note.findOneAndUpdate(
       {
         _id: mongoose.Types.ObjectId(noteId),
-        created_by: req.user.userId,
+        createdBy: req.user.userId,
         owner: req.user.userId
       },
       { message },
@@ -104,7 +104,7 @@ async function deleteNote(req, res) {
     const noteId = req.params.note_id;
     note = await Note.findOneAndDelete({
       _id: mongoose.Types.ObjectId(noteId),
-      created_by: req.user.userId,
+      createdBy: req.user.userId,
       owner: req.user.userId
     }).exec();
 

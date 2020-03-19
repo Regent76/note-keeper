@@ -9,7 +9,7 @@ let noteSchema = new Schema(
       trim: true,
       maxlength: 256000
     },
-    created_by: {
+    createdBy: {
       type: String,
       required: true
     },
