@@ -1,5 +1,7 @@
 # Note keeper API
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7d392b3d56da43dc9a908d8dcd4e5548)](https://app.codacy.com/manual/Regent76/note-keeper?utm_source=github.com&utm_medium=referral&utm_content=Regent76/note-keeper&utm_campaign=Badge_Grade_Dashboard)
+
 Server API for Note keeper web application
 Working with notes (Node.js, ExpressJS, MongoDB)
 
