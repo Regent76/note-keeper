@@ -1,6 +1,6 @@
-import {combineReducers} from 'redux';
-import {authentication} from './AuthReducer';
-import {note} from '../notes/NoteReducer';
+import {combineReducers} from "redux";
+import {authentication} from "./AuthReducer";
+import {note} from "../notes/NoteReducer";
 
 const rootReducer = combineReducers({
     authentication,

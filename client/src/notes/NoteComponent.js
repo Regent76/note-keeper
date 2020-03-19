@@ -1,13 +1,13 @@
-import {connect} from 'react-redux';
-import {noteAction} from '../actions';
-import React, {Component} from 'react';
-import AppBar from '../components/Appbar';
-import PropTypes from 'prop-types';
-import {withStyles} from '@material-ui/core/styles';
-import Nav from '../components/Nav';
-import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
-import {withRouter} from 'react-router-dom';
+import {connect} from "react-redux";
+import {noteAction} from "../actions";
+import React, {Component} from "react";
+import AppBar from "../components/Appbar";
+import PropTypes from "prop-types";
+import {withStyles} from "@material-ui/core/styles";
+import Nav from "../components/Nav";
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
+import {withRouter} from "react-router-dom";
 
 import {
     Typography,
@@ -20,11 +20,11 @@ import {
     Grid,
     Button,
     IconButton,
-} from '@material-ui/core';
+} from "@material-ui/core";
 
 const drawerWidth = 240;
 
-const styles = theme => ({
+const styles = (theme) => ({
     typography: {
         useNextVariants: true,
     },
@@ -33,22 +33,22 @@ const styles = theme => ({
     },
     appFrame: {
         zIndex: 1,
-        overflow: 'hidden',
-        position: 'relative',
-        display: 'flex',
-        width: '100%',
+        overflow: "hidden",
+        position: "relative",
+        display: "flex",
+        width: "100%",
     },
     appBar: {
         width: `calc(100% - ${drawerWidth}px)`,
     },
-    'appBar-left': {
+    "appBar-left": {
         marginLeft: drawerWidth,
     },
-    'appBar-right': {
+    "appBar-right": {
         marginRight: drawerWidth,
     },
     drawerPaper: {
-        position: 'relative',
+        position: "relative",
         width: drawerWidth,
     },
     toolbar: theme.mixins.toolbar,
@@ -58,7 +58,7 @@ const styles = theme => ({
         padding: theme.spacing(3),
     },
     paper: {
-        position: 'absolute',
+        position: "absolute",
         width: theme.spacing(50),
         backgroundColor: theme.palette.background.paper,
         boxShadow: theme.shadows[5],
@@ -72,7 +72,7 @@ class Note extends Component {
         dispatch(noteAction.getNote());
     }
 
-    handleChange = event => {
+    handleChange = (event) => {
         this.setState({
             anchor: event.target.value,
         });
@@ -94,7 +94,7 @@ class Note extends Component {
                         <div className={classes.toolbar}/>
                         <Grid container spacing={6}>
                             <Grid item xs={3} align="left">
-                                <Typography>{'Notes'}</Typography>
+                                <Typography>{"Notes"}</Typography>
                             </Grid>
                             <Grid item xs={6}>
                             </Grid>
@@ -107,7 +107,7 @@ class Note extends Component {
                             <Grid item xs={6}>
                             </Grid>
                             <Grid item xs={3} container justify="flex-end">
-                                <Button variant="contained" color="primary" className={classes.button} component='a'
+                                <Button variant="contained" color="primary" className={classes.button} component="a"
                                         href="/add-note">Add Note</Button>
                             </Grid>
                         </Grid>
@@ -125,7 +125,7 @@ class Note extends Component {
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                        {note.map(n => {
+                                        {note.map((n) => {
                                             let createdAt = new Date(n.created_at);
                                             createdAt = createdAt.toLocaleString();
                                             let updatedAt = new Date(n.updated_at);
@@ -139,7 +139,7 @@ class Note extends Component {
                                                     <TableCell component="th" scope="row"> {n.created_by} </TableCell>
                                                     <TableCell>
                                                         <IconButton className={classes.button} aria-label="Edit"
-                                                                    component='a' href={`/notes/${n._id}`}>
+                                                                    component="a" href={`/notes/${n._id}`}>
                                                             <EditIcon/>
                                                         </IconButton>
                                                         <IconButton className={classes.button} aria-label="Delete"

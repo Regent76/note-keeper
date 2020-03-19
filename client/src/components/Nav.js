@@ -1,17 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {withStyles} from '@material-ui/core/styles';
-import {userActions} from '../actions';
-import {connect} from 'react-redux';
-import HomeIcon from '@material-ui/icons/Home';
-import LogoutIcon from '@material-ui/icons/ExitToApp';
-import NoteIcon from '@material-ui/icons/Description';
+import React from "react";
+import PropTypes from "prop-types";
+import {withStyles} from "@material-ui/core/styles";
+import {userActions} from "../actions";
+import {connect} from "react-redux";
+import HomeIcon from "@material-ui/icons/Home";
+import LogoutIcon from "@material-ui/icons/ExitToApp";
+import NoteIcon from "@material-ui/icons/Description";
 
-import {Drawer, List, Divider, ListItem, ListItemIcon, ListItemText} from '@material-ui/core';
+import {Drawer, List, Divider, ListItem, ListItemIcon, ListItemText} from "@material-ui/core";
 
 const drawerWidth = 240;
 
-const styles = theme => ({
+const styles = (theme) => ({
     typography: {
         useNextVariants: true,
     },
@@ -20,22 +20,22 @@ const styles = theme => ({
     },
     appFrame: {
         zIndex: 1,
-        overflow: 'hidden',
-        position: 'relative',
-        display: 'flex',
-        width: '100%',
+        overflow: "hidden",
+        position: "relative",
+        display: "flex",
+        width: "100%",
     },
     appBar: {
         width: `calc(100% - ${drawerWidth}px)`,
     },
-    'appBar-left': {
+    "appBar-left": {
         marginLeft: drawerWidth,
     },
-    'appBar-right': {
+    "appBar-right": {
         marginRight: drawerWidth,
     },
     drawerPaper: {
-        position: 'relative',
+        position: "relative",
         width: drawerWidth,
     },
     toolbar: theme.mixins.toolbar,
@@ -50,11 +50,11 @@ class Navigation extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            anchor: 'left',
-        }
+            anchor: "left",
+        };
     }
 
-    logout = event => {
+    logout = (event) => {
         const {dispatch} = this.props;
         dispatch(userActions.logout());
     };
@@ -71,13 +71,13 @@ class Navigation extends React.Component {
                 anchor={anchor}
             >
                 <List component="nav">
-                    <ListItem button component='a' href="/home">
+                    <ListItem button component="a" href="/home">
                         <ListItemIcon>
                             <HomeIcon/>
                         </ListItemIcon>
                         <ListItemText primary="Home"/>
                     </ListItem>
-                    <ListItem button component='a' href="/notes">
+                    <ListItem button component="a" href="/notes">
                         <ListItemIcon>
                             <NoteIcon/>
                         </ListItemIcon>

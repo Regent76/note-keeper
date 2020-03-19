@@ -1,23 +1,23 @@
 const initialState = {
-    anchor: 'left',
+    anchor: "left",
     note: [],
     open: false,
-    id: '',
-    message: '',
-    created_by: '',
-    owner: '',
-    created_at: '',
-    updated_at: ''
+    id: "",
+    message: "",
+    created_by: "",
+    owner: "",
+    created_at: "",
+    updated_at: ""
 };
 
 export function note(state = initialState, action) {
     switch (action.type) {
-        case 'FETECHED_ALL_NOTE':
+        case "FETECHED_ALL_NOTE":
             return {
                 ...state,
                 note: action.note
             };
-        case 'NOTE_DETAIL':
+        case "NOTE_DETAIL":
             return {
                 ...state,
                 id: action.id,
@@ -35,6 +35,6 @@ export function note(state = initialState, action) {
                 [action.props]: action.value
             };
         default:
-            return state
+            return state;
     }
 }

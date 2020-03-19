@@ -1,9 +1,9 @@
-import response from '../../../services/response';
-import User from '../../../models/User';
-import crypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import utils from '../../../config/utils';
-import { validationResult } from 'express-validator';
+import response from "../../../services/response";
+import User from "../../../models/User";
+import crypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import utils from "../../../config/utils";
+import { validationResult } from "express-validator";
 
 // /v1/auth/register
 async function registerUser(req, res) {
@@ -21,7 +21,7 @@ async function registerUser(req, res) {
 
     const newUser = await User.findOne({ email });
     if (newUser) {
-      response.code400(res, { message: 'This user already exist.' });
+      response.code400(res, { message: "This user already exist." });
     }
 
     const hashedPassword = await crypt.hash(password, 12);
@@ -34,7 +34,7 @@ async function registerUser(req, res) {
 
     await user.save();
 
-    response.code201(res, { message: 'User created.' });
+    response.code201(res, { message: "User created." });
   } catch (err) {
     response.code500(res, err);
   }
@@ -53,13 +53,13 @@ async function authUser(req, res) {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (!user) {
-      response.code400(res, { message: 'User not found or wrong password.' });
+      response.code400(res, { message: "User not found or wrong password." });
     }
 
     const isMatch = await crypt.compare(password, user.password);
     if (!isMatch) {
       return response.code400(res, {
-        message: 'User not found or wrong password.'
+        message: "User not found or wrong password."
       });
     }
 
@@ -68,8 +68,8 @@ async function authUser(req, res) {
         userId: user.id,
         userEmail: user.email
       },
-      utils.getEnvOrPanic('APP_JWT_KEY'),
-      { expiresIn: '1h' }
+      utils.getEnvOrPanic("APP_JWT_KEY"),
+      { expiresIn: "1h" }
     );
 
     response.code200(res, { token, userId: user.id });

@@ -1,32 +1,32 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import {withStyles} from '@material-ui/core/styles';
-import {AppBar, Toolbar, Typography} from '@material-ui/core';
+import React from "react";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import {withStyles} from "@material-ui/core/styles";
+import {AppBar, Toolbar, Typography} from "@material-ui/core";
 
 const drawerWidth = 240;
-const styles = theme => ({
+const styles = (theme) => ({
     root: {
         flexGrow: 1,
     },
     appFrame: {
         zIndex: 1,
-        overflow: 'hidden',
-        position: 'relative',
-        display: 'flex',
-        width: '100%',
+        overflow: "hidden",
+        position: "relative",
+        display: "flex",
+        width: "100%",
     },
     appBar: {
         width: `calc(100% - ${drawerWidth}px)`,
     },
-    'appBar-left': {
+    "appBar-left": {
         marginLeft: drawerWidth,
     },
-    'appBar-right': {
+    "appBar-right": {
         marginRight: drawerWidth,
     },
     drawerPaper: {
-        position: 'relative',
+        position: "relative",
         width: drawerWidth,
     },
     toolbar: theme.mixins.toolbar,
@@ -40,9 +40,9 @@ const styles = theme => ({
 
 class PermanentDrawer extends React.Component {
     state = {
-        anchor: 'left',
+        anchor: "left",
     };
-    handleChange = event => {
+    handleChange = (event) => {
         this.setState({
             anchor: event.target.value,
         });

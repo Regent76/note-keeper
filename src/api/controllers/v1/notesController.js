@@ -1,8 +1,8 @@
-import response from '../../../services/response';
-import { validationResult } from 'express-validator';
-import mongoose from 'mongoose';
-import Note from '../../../models/Note';
-import utils from '../../utils';
+import response from "../../../services/response";
+import { validationResult } from "express-validator";
+import mongoose from "mongoose";
+import Note from "../../../models/Note";
+import utils from "../../utils";
 
 async function getNotes(req, res) {
   let notes;
@@ -33,7 +33,7 @@ async function createNote(req, res) {
 
   if (!errors.isEmpty()) {
     return response.code422(res, {
-      message: 'Error on create item occurred.'
+      message: "Error on create item occurred."
     });
   }
   const message = req.body.message;
@@ -47,7 +47,6 @@ async function createNote(req, res) {
   try {
     await note.save();
   } catch (err) {
-    console.log(err);
     return response.code500(res, err);
   }
 
@@ -62,7 +61,7 @@ async function updateNote(req, res) {
 
     if (!errors.isEmpty()) {
       return response.code422(res, {
-        message: 'Error on update item occurred.'
+        message: "Error on update item occurred."
       });
     }
 
@@ -82,7 +81,7 @@ async function updateNote(req, res) {
       }
     ).exec();
     if (note === null) {
-      return response.code404(res, 'Note not found');
+      return response.code404(res, "Note not found");
     }
 
     response.code200(res, note);
@@ -98,7 +97,7 @@ async function deleteNote(req, res) {
 
     if (!errors.isEmpty()) {
       return response.code422(res, {
-        message: 'Error on update item occurred.'
+        message: "Error on update item occurred."
       });
     }
 
@@ -110,7 +109,7 @@ async function deleteNote(req, res) {
     }).exec();
 
     if (note === null) {
-      return response.code404(res, 'Note not found');
+      return response.code404(res, "Note not found");
     }
 
     response.code204(res);

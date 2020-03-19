@@ -10,11 +10,11 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-- Git version > 2.21.0
-- Node.js > v8.16.0
-- Npm > 6.4.x
-- Nodemon > 2.0.x
-- MongoDB server > 3.x
+-  Git version > 2.21.0
+-  Node.js > v8.16.0
+-  Npm > 6.4.x
+-  Nodemon > 2.0.x
+-  MongoDB server > 3.x
 
 ## Installing
 

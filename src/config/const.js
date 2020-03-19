@@ -1,8 +1,8 @@
 export default {
   TEST: {
-    NODE_ENV: 'test'
+    NODE_ENV: "test"
   },
   LOCAL: {
-    NODE_ENV: 'local'
+    NODE_ENV: "local"
   }
 };

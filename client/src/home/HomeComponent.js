@@ -1,15 +1,15 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import {withStyles} from '@material-ui/core/styles';
-import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
-import AppBar from '../components/Appbar';
-import Nav from '../components/Nav';
-import {Typography} from '@material-ui/core';
+import React, {Component} from "react";
+import PropTypes from "prop-types";
+import {withStyles} from "@material-ui/core/styles";
+import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
+import AppBar from "../components/Appbar";
+import Nav from "../components/Nav";
+import {Typography} from "@material-ui/core";
 
 const drawerWidth = 240;
 
-const styles = theme => ({
+const styles = (theme) => ({
     typography: {
         useNextVariants: true,
     },
@@ -18,22 +18,22 @@ const styles = theme => ({
     },
     appFrame: {
         zIndex: 1,
-        overflow: 'hidden',
-        position: 'relative',
-        display: 'flex',
-        width: '100%',
+        overflow: "hidden",
+        position: "relative",
+        display: "flex",
+        width: "100%",
     },
     appBar: {
         width: `calc(100% - ${drawerWidth}px)`,
     },
-    'appBar-left': {
+    "appBar-left": {
         marginLeft: drawerWidth,
     },
-    'appBar-right': {
+    "appBar-right": {
         marginRight: drawerWidth,
     },
     drawerPaper: {
-        position: 'relative',
+        position: "relative",
         width: drawerWidth,
     },
     toolbar: theme.mixins.toolbar,
@@ -54,7 +54,7 @@ class Home extends Component {
                     <Nav/>
                     <main className={classes.content}>
                         <div className={classes.toolbar}/>
-                        <Typography>{'Home'}</Typography>
+                        <Typography>{"Home"}</Typography>
                     </main>
                 </div>
             </div>

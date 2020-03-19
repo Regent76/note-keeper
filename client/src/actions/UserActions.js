@@ -1,5 +1,5 @@
-import {userService} from '../services/';
-import {history} from '../helpers';
+import {userService} from "../services/";
+import {history} from "../helpers";
 
 export const userActions = {
     register,
@@ -8,8 +8,8 @@ export const userActions = {
 };
 
 function login(email, password) {
-    return dispatch => {
-        let apiEndpoint = 'auth/login';
+    return (dispatch) => {
+        let apiEndpoint = "auth/login";
         let payload = {
             email: email,
             password: password
@@ -17,28 +17,28 @@ function login(email, password) {
         userService.post(apiEndpoint, payload)
             .then((response) => {
                 if (response && response.data.token) {
-                    localStorage.setItem('token', response.data.token);
-                    localStorage.setItem('auth', response.data.auth);
+                    localStorage.setItem("token", response.data.token);
+                    localStorage.setItem("auth", response.data.auth);
                     dispatch(setUserDetails(response.data));
-                    history.push('/home');
+                    history.push("/home");
                 }
             })
     };
 }
 
 function register(email, password) {
-    return dispatch => {
+    return (dispatch) => {
         return new Promise((resolve, reject) => {
-            let apiEndpoint = 'auth/register';
+            let apiEndpoint = "auth/register";
             let payload = {
                 email: email,
                 password: password
             };
             userService.post(apiEndpoint, payload)
                 .then((response) => {
-                    if (response && response.data.message === 'User created.') {
+                    if (response && response.data.message === "User created.") {
                         dispatch(setUserDetails(response.data));
-                        history.push('/');
+                        history.push("/");
                     }
                 }).catch(err => {
                 dispatch(setRegisterError(err.response));
@@ -48,18 +48,18 @@ function register(email, password) {
 }
 
 function logout() {
-    return dispatch => {
-        localStorage.removeItem('auth');
-        localStorage.removeItem('token');
+    return (dispatch) => {
+        localStorage.removeItem("auth");
+        localStorage.removeItem("token");
         dispatch(logoutUser());
-        history.push('/');
+        history.push("/");
     }
 }
 
 export function setRegisterError(error) {
     return {
         type: "REGISTER_ERROR",
-        errorMessage: error.data.message || 'Something goes wrong.',
+        errorMessage: error.data.message || "Something goes wrong.",
     }
 }
 export function setUserDetails(user) {
@@ -74,6 +74,6 @@ export function logoutUser() {
     return {
         type: "LOGOUT_SUCCESS",
         auth: false,
-        token: ''
+        token: ""
     }
 }

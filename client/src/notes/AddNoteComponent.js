@@ -1,19 +1,19 @@
-import React, {Component} from 'react';
-import AppBar from '../components/Appbar';
-import PropTypes from 'prop-types';
-import {withStyles} from '@material-ui/core/styles';
-import Nav from '../components/Nav';
-import {connect} from 'react-redux';
-import {noteAction} from '../actions';
-import {withRouter} from 'react-router-dom';
+import React, {Component} from "react";
+import AppBar from "../components/Appbar";
+import PropTypes from "prop-types";
+import {withStyles} from "@material-ui/core/styles";
+import Nav from "../components/Nav";
+import {connect} from "react-redux";
+import {noteAction} from "../actions";
+import {withRouter} from "react-router-dom";
 
 
-import {Typography, Paper, Grid, Button, TextField} from '@material-ui/core';
+import {Typography, Paper, Grid, Button, TextField} from "@material-ui/core";
 
 
 const drawerWidth = 240;
 
-const styles = theme => ({
+const styles = (theme) => ({
     typography: {
         useNextVariants: true,
     },
@@ -27,22 +27,22 @@ const styles = theme => ({
     },
     appFrame: {
         zIndex: 1,
-        overflow: 'hidden',
-        position: 'relative',
-        display: 'flex',
-        width: '100%',
+        overflow: "hidden",
+        position: "relative",
+        display: "flex",
+        width: "100%",
     },
     appBar: {
         width: `calc(100% - ${drawerWidth}px)`,
     },
-    'appBar-left': {
+    "appBar-left": {
         marginLeft: drawerWidth,
     },
-    'appBar-right': {
+    "appBar-right": {
         marginRight: drawerWidth,
     },
     drawerPaper: {
-        position: 'relative',
+        position: "relative",
         width: drawerWidth,
     },
     toolbar: theme.mixins.toolbar,
@@ -54,7 +54,7 @@ const styles = theme => ({
 });
 
 class AddNote extends Component {
-    handleChange = prop => event => {
+    handleChange = (prop) => (event) => {
         const {dispatch} = this.props;
         dispatch(noteAction.onChangeProps(prop, event));
     };
@@ -85,11 +85,11 @@ class AddNote extends Component {
         const {match: {params}} = this.props;
 
         function InsertText(props) {
-            return <Typography>{'Add New Note'}</Typography>;
+            return <Typography>{"Add New Note"}</Typography>;
         }
 
         function EditText(props) {
-            return <Typography>{'Edit Note'}</Typography>;
+            return <Typography>{"Edit Note"}</Typography>;
         }
 
         function SegHeader() {
@@ -131,7 +131,7 @@ class AddNote extends Component {
                                                         placeholder="Enter your Note text here"
                                                         className={classes.textField}
                                                         value={this.props.note.message}
-                                                        onChange={this.handleChange('message')}
+                                                        onChange={this.handleChange("message")}
                                                         margin="normal"
                                                     />
                                                 </Grid>
@@ -146,7 +146,7 @@ class AddNote extends Component {
                                                     <Grid container spacing={6}>
                                                         <Grid item xs={6} container justify="center">
                                                             <Button variant="contained" color="secondary"
-                                                                    className={classes.button} component='a'
+                                                                    className={classes.button} component="a"
                                                                     href="/notes">Cancel</Button>
                                                         </Grid>
                                                         <Grid item xs={6} container justify="flex-start">

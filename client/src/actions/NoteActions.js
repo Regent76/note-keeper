@@ -1,41 +1,31 @@
-import {userService} from '../services/';
-import {history} from '../helpers';
-
-export const noteAction = {
-    getNote,
-    getNoteById,
-    onChangeProps,
-    editNoteInfo,
-    createNote,
-    deleteNoteById
-};
+import {userService} from "../services/";
+import {history} from "../helpers";
 
 function getNote() {
-    return dispatch => {
-        let apiEndpoint = 'notes';
+    return (dispatch) => {
+        let apiEndpoint = "notes";
         userService.get(apiEndpoint)
             .then((response) => {
                 dispatch(changeNotesList(response.data.items));
             }).catch((err) => {
-            console.log(err);
         })
     };
 }
 
 function createNote(payload) {
-    return dispatch => {
-        let apiEndpoint = 'notes/';
+    return (dispatch) => {
+        let apiEndpoint = "notes/";
         userService.post(apiEndpoint, payload)
             .then((response) => {
                 dispatch(createUserInfo());
-                history.push('/notes');
+                history.push("/notes");
             })
     }
 }
 
 function getNoteById(id) {
-    return dispatch => {
-        let apiEndpoint = 'notes/' + id;
+    return (dispatch) => {
+        let apiEndpoint = "notes/" + id;
         userService.get(apiEndpoint)
             .then((response) => {
                 dispatch(editVNotesDetails(response.data.note));
@@ -44,25 +34,25 @@ function getNoteById(id) {
 }
 
 function onChangeProps(props, event) {
-    return dispatch => {
+    return (dispatch) => {
         dispatch(handleOnChangeProps(props, event.target.value));
     }
 }
 
 function editNoteInfo(id, payload) {
-    return dispatch => {
-        let apiEndpoint = 'notes/' + id;
+    return (dispatch) => {
+        let apiEndpoint = "notes/" + id;
         userService.put(apiEndpoint, payload)
             .then((response) => {
                 dispatch(updatedUserInfo());
-                history.push('/notes');
+                history.push("/notes");
             })
     }
 }
 
 function deleteNoteById(id) {
-    return dispatch => {
-        let apiEndpoint = 'notes/' + id;
+    return (dispatch) => {
+        let apiEndpoint = "notes/" + id;
         userService.deleteDetail(apiEndpoint)
             .then((response) => {
                 dispatch(deleteNotesDetails());
@@ -70,6 +60,14 @@ function deleteNoteById(id) {
             })
     };
 }
+export const noteAction = {
+    getNote,
+    getNoteById,
+    onChangeProps,
+    editNoteInfo,
+    createNote,
+    deleteNoteById
+};
 
 export function changeNotesList(note) {
     return {

@@ -8,7 +8,7 @@ info:
   description: >-
     Note keeper API
 servers:
-  - url: 'https://note-keeper.app'
+  - url: "https://note-keeper.app"
     description: >-
       Development Server - used by developers and test team
 paths:
@@ -17,7 +17,7 @@ paths:
       tags:
         - System
       responses:
-        '200':
+        "200":
           content:
             application/json:
               schema:
@@ -35,7 +35,7 @@ paths:
       tags:
         - System
       responses:
-        '200':
+        "200":
           content:
             application/x-yaml:
               schema:
@@ -43,7 +43,7 @@ paths:
                 nullable: true
                 example: null
           description: Actual Swagger API documentation
-        '500':
+        "500":
           content:
             application/json:
               schema:
@@ -73,17 +73,17 @@ paths:
       tags:
         - Authorization
       responses:
-        '201':
+        "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: "#/components/schemas/User"
           description: Returns register User model if user successfully registered.
-        '422':
+        "422":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ValidationError'
+                $ref: "#/components/schemas/ValidationError"
           description: Data Validation Failed
       operationId: registerUser
       summary: Register user
@@ -112,7 +112,7 @@ paths:
       tags:
         - Authorization
       responses:
-        '201':
+        "201":
           content:
             application/json:
               schema:
@@ -123,13 +123,13 @@ paths:
                     description: Bearer token
                     type: string
                   user:
-                    $ref: '#/components/schemas/User'
+                    $ref: "#/components/schemas/User"
           description: Returns access token and user id if successfully authenticated
-        '403':
+        "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UnauthorizedError'
+                $ref: "#/components/schemas/UnauthorizedError"
           description: UnauthorizedError if user not found or wrong email / password
       operationId: loginUser
       summary: User Login
@@ -156,7 +156,7 @@ paths:
             type: integer
           description: Count results on page
       responses:
-        '200':
+        "200":
           content:
             application/json:
               schema:
@@ -168,15 +168,15 @@ paths:
                     items:
                       $ref: "#/components/schemas/Note"
                   _meta:
-                    $ref: '#/components/schemas/Pagination'
+                    $ref: "#/components/schemas/Pagination"
           description: Returns list of notes
-        '401':
+        "401":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/UnauthorizedError"
           description: No authorization token was found or invalid token
-        '500':
+        "500":
           content:
             application/json:
               schema:
@@ -209,25 +209,25 @@ paths:
               required:
                 - message
       responses:
-        '201':
+        "201":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Note"
           description: Return Note model
-        '401':
+        "401":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/UnauthorizedError"
           description: No authorization token was found or invalid token
-        '422':
+        "422":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/ValidationError"
           description: Data validation failed
-        '500':
+        "500":
           content:
             application/json:
               schema:
@@ -266,19 +266,19 @@ paths:
                   description: New Note text
                   example: message
       responses:
-        '200':
+        "200":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Note"
           description: Return Note model
-        '401':
+        "401":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/UnauthorizedError"
           description: No authorization token was found or invalid token
-        '404':
+        "404":
           content:
             application/json:
               schema:
@@ -294,13 +294,13 @@ paths:
                     type: string
                     example: "Note not found"
           description: Note not found
-        '422':
+        "422":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/ValidationError"
           description: Data validation failed
-        '500':
+        "500":
           content:
             application/json:
               schema:
@@ -327,15 +327,15 @@ paths:
             example: "5e6c09a3ec05c2bfc4c0f489"
             description: Note ID
       responses:
-        '204':
+        "204":
           description: Removing success code
-        '401':
+        "401":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/UnauthorizedError"
           description: No authorization token was found or invalid token
-        '404':
+        "404":
           content:
             application/json:
               schema:
@@ -351,13 +351,13 @@ paths:
                     type: string
                     example: "Note not found"
           description: Note not found
-        '422':
+        "422":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/ValidationError"
           description: Data validation failed
-        '500':
+        "500":
           content:
             application/json:
               schema:

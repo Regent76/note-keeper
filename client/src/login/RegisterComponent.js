@@ -1,23 +1,23 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import {withStyles} from '@material-ui/core/styles';
-import {connect} from 'react-redux';
-import {userActions} from '../actions';
-import {history} from '../helpers';
-import {withRouter} from 'react-router-dom';
-import {Paper, Grid, Button, TextField, Typography} from '@material-ui/core';
+import React, {Component} from "react";
+import PropTypes from "prop-types";
+import {withStyles} from "@material-ui/core/styles";
+import {connect} from "react-redux";
+import {userActions} from "../actions";
+import {history} from "../helpers";
+import {withRouter} from "react-router-dom";
+import {Paper, Grid, Button, TextField, Typography} from "@material-ui/core";
 
-const styles = theme => ({
+const styles = (theme) => ({
     typography: {
         useNextVariants: true,
     },
     root: {
-        display: 'flex',
-        flexWrap: 'wrap'
+        display: "flex",
+        flexWrap: "wrap"
     },
     container: {
-        display: 'flex',
-        flexWrap: 'wrap',
+        display: "flex",
+        flexWrap: "wrap",
     },
     margin: {
         margin: theme.spacing(1),
@@ -32,14 +32,14 @@ const styles = theme => ({
     },
     paper: {
         padding: theme.spacing(2),
-        textAlign: 'center',
+        textAlign: "center",
         color: theme.palette.text.secondary,
     },
     button: {
         margin: theme.spacing(1),
     },
     input: {
-        display: 'none',
+        display: "none",
     },
 });
 
@@ -47,23 +47,23 @@ class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
-            password: '',
+            email: "",
+            password: "",
             showPassword: false,
-            errorMessage: ''
+            errorMessage: ""
         }
     }
 
     componentDidMount() {
-        if (localStorage.getItem('auth')) {
-            history.push('/home');
+        if (localStorage.getItem("auth")) {
+            history.push("/home");
         }
     }
 
-    handleChange = prop => event => {
+    handleChange = (prop) => (event) => {
         this.setState({[prop]: event.target.value});
     };
-    register = event => {
+    register = (event) => {
         const {email, password} = this.state;
         const {dispatch} = this.props;
         if (email && password) {
@@ -84,7 +84,7 @@ class Register extends Component {
                     </Grid>
                     <Grid item xs={6}>
                         <Paper className={classes.paper}>
-                            <Typography component={'h1'} variant={'h1'}>{'Register'}</Typography>
+                            <Typography component={"h1"} variant={"h1"}>{"Register"}</Typography>
                         </Paper>
                         <Paper className={classes.paper}>
                             <div>
@@ -92,16 +92,16 @@ class Register extends Component {
                                     label="email"
                                     value={this.state.email}
                                     className={classes.textField}
-                                    onChange={this.handleChange('email')}
+                                    onChange={this.handleChange("email")}
                                 />
                                 <br/><br/>
                                 <TextField
                                     label="Password"
                                     autoComplete="current-password"
-                                    type={this.state.showPassword ? 'text' : 'password'}
+                                    type={this.state.showPassword ? "text" : "password"}
                                     className={classes.textField}
                                     value={this.state.password}
-                                    onChange={this.handleChange('password')}
+                                    onChange={this.handleChange("password")}
                                 />
                                 {errorMessage &&
                                 <h3 className="error"> {errorMessage} </h3>}
